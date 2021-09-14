@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM debian:latest
 
 MAINTAINER Clayton Hynfield <clayton@hynfield.org>
 
@@ -7,11 +7,14 @@ RUN apt-get update && apt-get install -y \
     vim \
     man \
     less \
+    file \
     tmux \
     direnv \
     jq \
     curl \
     git \
+    gcc \
+    procps \
     wamerican \
  && rm -rf /var/lib/apt/lists/*
 
