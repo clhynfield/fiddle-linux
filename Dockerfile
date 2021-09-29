@@ -16,13 +16,13 @@ RUN apt-get update && apt-get install -y \
     gcc \
     procps \
     wamerican \
+    perl \
  && rm -rf /var/lib/apt/lists/*
 
-RUN curl \
-    --remote-name \
-    --location \
-    https://github.com/getantibody/antibody/releases/download/v4.1.0/antibody_4.1.0_linux_amd64.deb \
-    && dpkg --install antibody_4.1.0_linux_amd64.deb
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+RUN /home/linuxbrew/.linuxbrew/bin/brew install \
+    antibody
 
 ENV LC_CTYPE C.UTF-8
 
