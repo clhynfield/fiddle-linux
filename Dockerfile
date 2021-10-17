@@ -17,12 +17,15 @@ RUN apt-get update && apt-get install -y \
     procps \
     wamerican \
     perl \
+    gpg \
+    make \
  && rm -rf /var/lib/apt/lists/*
 
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 RUN /home/linuxbrew/.linuxbrew/bin/brew install \
-    antibody
+    antibody \
+    shellspec/shellspec/shellspec
 
 ENV LC_CTYPE C.UTF-8
 
