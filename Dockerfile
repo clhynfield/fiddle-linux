@@ -35,11 +35,13 @@ RUN useradd --create-home clayton --uid 1001 -g clayton --shell /usr/bin/zsh --s
 RUN chown -R clayton /workspace /home/linuxbrew/.linuxbrew
 USER clayton
 
-RUN rm -rf ~ && git clone --recursive https://github.com/clhynfield/dotfiles.git ~
+RUN rm -rf ~/* && git clone --recursive https://github.com/clhynfield/dotfiles.git ~
 
 RUN vim -c PlugInstall -c quitall
 
-RUN mkdir /workspace && ln -s /workspace "$HOME/workspace"
+COPY --from=clhynfield/keybase-cli:0.0.4 /usr/local/bin/keybase /usr/local/bin/keybase
+
+RUN ln -s /workspace "$HOME/workspace"
 VOLUME "/workspace"
 WORKDIR /workspace
 
