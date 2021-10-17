@@ -29,7 +29,11 @@ RUN /home/linuxbrew/.linuxbrew/bin/brew install \
 
 ENV LC_CTYPE C.UTF-8
 
-RUN chsh --shell /usr/bin/zsh
+RUN mkdir /workspace
+RUN groupadd --gid 1002 clayton
+RUN useradd --create-home clayton --uid 1001 -g clayton --shell /usr/bin/zsh --skel /workspace
+RUN chown -R clayton /workspace /home/linuxbrew/.linuxbrew
+USER clayton
 
 RUN rm -rf ~ && git clone --recursive https://github.com/clhynfield/dotfiles.git ~
 
